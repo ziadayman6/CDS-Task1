@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+.inactive-link {
+  @apply bg-gray-200 text-center text-gray-400 w-[70%] rounded-[10px] text-sm font-bold flex justify-center items-center sm:px-8 px-3 sm:py-2 py-2 uppercase;
+}
+
+.active-link {
+  @apply bg-yellow-500 text-white text-center w-[70%] rounded-[10px] text-sm font-bold flex justify-center items-center sm:px-8 px-3 sm:py-2 py-2 uppercase;
+}
+
+.logout-link {
+  @apply bg-red-700 text-black text-center w-[70%] rounded-[10px] text-sm font-bold flex justify-center items-center sm:px-8 px-3 sm:py-2 py-2 uppercase;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
