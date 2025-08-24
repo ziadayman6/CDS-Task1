@@ -40,13 +40,11 @@ const businessSlice = createSlice({
   initialState: business, // just load array directly
   reducers: {
     addBusiness: (state, action: PayloadAction<Business>) => {
-      toast.success("Added successfully");
       state.push(action.payload);
     },
     updateBusiness: (state, action: PayloadAction<Business>) => {
       const index = state.findIndex((u) => u.id === action.payload.id);
       if (index !== -1) {
-        toast.success("Edited successfully");
         state[index] = action.payload;
       }
     },

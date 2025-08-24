@@ -3,17 +3,22 @@ import Button from "../ui//Button";
 import TextInput from "../ui/TextInput";
 import PassInput from "../ui/PassInput";
 import { login, type request } from "../services/login";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
 
 function Login() {
   const [user, setUser] = useState("");
-
   const [pass, setPass] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
+  const isAuthenticated = localStorage.getItem("CDS1-token");
+
   async function runLogin() {
+    setIsLoading(true);
     const requestData: request = {
       username: user,
       password: pass,
@@ -23,26 +28,41 @@ function Login() {
       const res = await login(requestData);
       console.log("Login successful:", res.token);
       toast.success("Logged in successfully");
+      setIsLoading(false);
       navigate("/users");
     } catch (err) {
       if (err instanceof Error) {
         toast.error("Username or password invalid");
-        console.error("Login failed:", err.message);
+        setIsLoading(false);
       }
     }
   }
 
+  if (isAuthenticated) return <Navigate to="/users" replace />;
+
   return (
-    <div className="w-full h-[100dvh] flex flex-col justify-center items-center">
-      <h1 className="text-3xl mb-5">Login to your account</h1>
-      <div className="w-[50%] bg-[#eeeeee6b] px-40 py-24 flex flex-col gap-8 rounded-2xl">
-        <TextInput value={user} setValue={setUser}>
-          Username
-        </TextInput>
-        <PassInput value={pass} setValue={setPass}>
-          Password
-        </PassInput>
-        <Button onSubmit={runLogin} />
+    <div className="w-full h-[100dvh] flex flex-col justify-center items-center dark:bg-[#0f181f]">
+      <h1 className="text-3xl mb-5 max-sm:text-2xl dark:text-white">Login to your account</h1>
+      <div className="w-[50%] max-sm:w-[90%] bg-[#eeeeee6b] px-40 max-sm:px-10 py-24 flex flex-col gap-8 rounded-2xl dark:bg-[#1a273b]">
+        {isLoading ? (
+          <div className="flex justify-center ">
+            <ClipLoader
+              color="#f0b100"
+              size={50}
+              aria-label="Loading Spinner"
+            />
+          </div>
+        ) : (
+          <>
+            <TextInput value={user} setValue={setUser}>
+              Username
+            </TextInput>
+            <PassInput value={pass} setValue={setPass}>
+              Password
+            </PassInput>
+            <Button onSubmit={runLogin}>Login</Button>
+          </>
+        )}
       </div>
     </div>
   );

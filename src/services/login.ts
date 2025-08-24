@@ -17,6 +17,7 @@ function scheduleTokenRefresh(token: jwtToken) {
     try {
       const newToken = await updateToken(token);
       scheduleTokenRefresh(newToken);
+      localStorage.setItem("token", newToken.token);
     } catch (error) {
       console.error("❌ Failed to refresh token:", error);
     }
@@ -51,6 +52,8 @@ export function login(req: request): Promise<jwtToken> {
           refreshToken: "refresh-jwt-token",
           refreshExpiresIn: 7200,
         };
+
+        localStorage.setItem("CDS1-token", token.token);
         scheduleTokenRefresh(token);
 
         resolve(token);

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import type { RootState } from "../store";
 
-export function useBusinesses(page: number, limit = 5) {
+export function useBusinesses(page: number, limit: number) {
   const data = useSelector((state: RootState) => state.business);
 
   const startIndex = (page - 1) * limit;

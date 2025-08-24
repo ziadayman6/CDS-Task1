@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import type { RootState } from "../store";
 
-export function useActives(page: number, limit = 5) {
+export function useActives(page: number, limit: number) {
   const data = useSelector((state: RootState) => state.active);
 
   const startIndex = (page - 1) * limit;
@@ -17,4 +17,3 @@ export function useActives(page: number, limit = 5) {
     data: paginatedData,
   };
 }
-

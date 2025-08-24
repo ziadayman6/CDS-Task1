@@ -35,13 +35,11 @@ const activeSlice = createSlice({
   initialState: active,
   reducers: {
     addActive: (state, action: PayloadAction<Active>) => {
-      toast.success("Added successfully");
       state.push(action.payload);
     },
     updateActive: (state, action: PayloadAction<Active>) => {
       const index = state.findIndex((u) => u.id === action.payload.id);
       if (index !== -1) {
-        toast.success("Edited successfully");
         state[index] = action.payload;
       }
     },

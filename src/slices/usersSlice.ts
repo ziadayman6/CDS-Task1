@@ -300,7 +300,6 @@ const usersSlice = createSlice({
     updateUser: (state, action: PayloadAction<User>) => {
       const index = state.findIndex((u) => u.id === action.payload.id);
       if (index !== -1) {
-        toast.success("Edited successfully");
         state[index] = action.payload;
       }
     },

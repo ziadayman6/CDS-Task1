@@ -1,16 +1,19 @@
+@import "bootstrap-icons/font/bootstrap-icons.css";
 @import "tailwindcss";
 @tailwind utilities;
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 .inactive-link {
-  @apply bg-gray-200 text-center text-gray-400 w-[70%] rounded-[10px] text-sm font-bold flex justify-center items-center sm:px-8 px-3 sm:py-2 py-2 uppercase;
+  @apply bg-gray-200 dark:bg-[#0f181f] gap-3 text-center text-gray-400 dark:text-gray-700 w-[65%] group-hover:w-[85%] rounded-[10px] text-[16px] font-semibold flex justify-center group-hover:justify-start items-center group-hover:sm:px-6 px-3 sm:py-2 py-2;
 }
 
 .active-link {
-  @apply bg-yellow-500 text-white text-center w-[70%] rounded-[10px] text-sm font-bold flex justify-center items-center sm:px-8 px-3 sm:py-2 py-2 uppercase;
+  @apply bg-yellow-500 dark:bg-yellow-600 gap-3 text-white text-center w-[65%] group-hover:w-[85%] rounded-[10px] text-[16px] font-semibold flex justify-center group-hover:justify-start items-center group-hover:sm:px-6 px-3 sm:py-2 py-2;
 }
 
 .logout-link {
-  @apply bg-red-700 text-black text-center w-[70%] rounded-[10px] text-sm font-bold flex justify-center items-center sm:px-8 px-3 sm:py-2 py-2 uppercase;
+  @apply bg-red-500 dark:bg-red-800 text-white gap-3 text-center w-[65%] group-hover:w-[85%] rounded-[10px] text-[16px] font-semibold flex justify-center group-hover:justify-start items-center group-hover:sm:px-6 px-3 sm:py-2 py-2;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -21,3 +24,6 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* 0f181f romady */
+/* 1a273b */

@@ -9,9 +9,9 @@ interface Props {
 function TextInput({ children, value, setValue }: Props) {
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-lg">{children}</label>
+      <label className="text-lg dark:text-white">{children}</label>
       <input
-        className="focus:outline-none rounded bg-white border-b-2 border-b-yellow-500 text-lg px-3 py-1"
+        className="focus:outline-none dark:border-b-yellow-600  rounded dark:text-white dark:bg-[#0f181f] bg-white border-b-2 border-b-yellow-500 text-lg px-3 py-1"
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
