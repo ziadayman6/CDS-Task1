@@ -23,8 +23,8 @@ function Login() {
   async function runLogin() {
     setIsLoading(true);
     const requestData: request = {
-      username: user,
-      password: pass,
+      username: "admin",
+      password: "password",
     };
 
     try {

@@ -29,7 +29,7 @@ function AppLayout() {
           </div>
           <Link
             to="/users"
-            className="flex items-center justify-center group-hover:justify-start gap-5"
+            className="flex items-center justify-center group-hover:justify-start gap-5 sm:hidden"
           >
             <div className="bg-[url('/crud.png')] bg-cover bg-center w-10 h-10 rounded-4xl shrink-0"></div>
           </Link>
