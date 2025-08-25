@@ -129,19 +129,19 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 ">
-      <div className="bg-white dark:bg-[#1a273b] w-[60%] rounded-2xl border-b-4 border-b-yellow-500 dark:border-b-yellow-600 px-15 py-10 relative">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 max-sm:overflow-y-scroll max-sm:py-10">
+      <div className="bg-white dark:bg-[#1a273b] w-[60%] max-sm:p-8 max-sm:w-[95%]  rounded-2xl border-b-4 border-b-yellow-500 dark:border-b-yellow-600 px-15 py-10 relative max-sm:mt-50">
         <button
           onClick={onClose}
           className={`absolute top-4 ${
             i18n.language === "ar" ? "left-6" : "right-6"
-          } text-black hover:text-red-600 dark:text-white dark:hover:text-red-800 text-2xl font-bold`}
+          } text-black hover:text-red-600 dark:text-white dark:hover:text-red-800 text-2xl max-sm:text-xl font-bold`}
         >
           X
         </button>
 
         <h1
-          className={`border-b-4 text-[27px] dark:text-white font-bold ${
+          className={`border-b-4 text-[27px] max-sm:text-[20px] dark:text-white font-bold ${
             i18n.language === "en" ? "pr-4" : "pl-4"
           } w-fit border-b-yellow-500 dark:border-b-yellow-600`}
         >
@@ -152,9 +152,9 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
           onSubmit={onSubmit}
           className="mt-10 flex flex-col gap-5 dark:text-white"
         >
-          <div className="flex gap-5 w-[60%] justify-between ">
+          <div className="flex max-sm:flex-col max-sm:gap-2 gap-5 w-[60%] max-sm:w-full justify-between ">
             <label>{t("firstName")}</label>
-            <div className="w-[70%]">
+            <div className="w-[70%] max-sm:w-full">
               <input
                 {...register("first")}
                 type="text"
@@ -166,9 +166,9 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
             </div>
           </div>
 
-          <div className="flex gap-5 w-[60%] justify-between">
+          <div className="flex max-sm:flex-col max-sm:gap-2 gap-5 w-[60%] max-sm:w-full justify-between">
             <label>{t("lastName")}</label>
-            <div className="w-[70%]">
+            <div className="w-[70%] max-sm:w-full">
               <input
                 {...register("last")}
                 type="text"
@@ -180,9 +180,9 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
             </div>
           </div>
 
-          <div className="flex gap-5 w-[60%] justify-between">
+          <div className="flex max-sm:flex-col max-sm:gap-2 gap-5 w-[60%] max-sm:w-full justify-between">
             <label>{t("username")}</label>
-            <div className="w-[70%]">
+            <div className="w-[70%] max-sm:w-full">
               <input
                 {...register("username")}
                 type="text"
@@ -194,9 +194,9 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
             </div>
           </div>
 
-          <div className="flex gap-5 w-[60%] justify-between">
+          <div className="flex max-sm:flex-col max-sm:gap-2 gap-5 w-[60%] max-sm:w-full justify-between">
             <label>{t("email")}</label>
-            <div className="w-[70%]">
+            <div className="w-[70%] max-sm:w-full">
               <input
                 {...register("email")}
                 type="text"
@@ -208,9 +208,9 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
             </div>
           </div>
 
-          <div className="flex gap-5 w-[60%] justify-between">
+          <div className="flex max-sm:flex-col max-sm:gap-2 gap-5 w-[60%] max-sm:w-full justify-between">
             <label>{t("phone")}</label>
-            <div className="w-[70%]">
+            <div className="w-[70%] max-sm:w-full">
               <input
                 {...register("phone")}
                 type="text"
@@ -222,9 +222,9 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
             </div>
           </div>
 
-          <div className="flex gap-5 w-[60%] justify-between">
+          <div className="flex max-sm:flex-col max-sm:gap-2 gap-5 w-[60%] max-sm:w-full justify-between">
             <label>{t("businessUnit")}</label>
-            <div className="w-[70%]">
+            <div className="w-[70%] max-sm:w-full">
               <select
                 {...register("business")}
                 className="focus:outline-none dark:border-b-yellow-600 rounded bg-gray-50 dark:bg-[#0f181f] border-b-2 border-b-yellow-500 px-3 py-1 w-full"
@@ -242,9 +242,9 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
             </div>
           </div>
 
-          <div className="flex gap-5 w-[60%] justify-between">
+          <div className="flex max-sm:flex-col max-sm:gap-2 gap-5 w-[60%] max-sm:w-full justify-between">
             <label>{t("activeDirectory")}</label>
-            <div className="w-[70%]">
+            <div className="w-[70%] max-sm:w-full">
               <select
                 {...register("active")}
                 className="focus:outline-none dark:border-b-yellow-600 rounded bg-gray-50 dark:bg-[#0f181f] border-b-2 border-b-yellow-500 px-3 py-1 w-full"
@@ -262,11 +262,11 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
             </div>
           </div>
 
-          <div className="flex w-[60%] justify-end">
+          <div className="flex w-[60%] max-sm:w-full justify-end">
             <input
               type="submit"
               value={t("save")}
-              className="px-4 py-1 w-[50%] dark:bg-yellow-600 bg-yellow-500 rounded text-white cursor-pointer"
+              className="px-4 py-1 w-[50%] max-sm:w-full max-sm:mt-5 dark:bg-yellow-600 bg-yellow-500 rounded text-white cursor-pointer"
             />
           </div>
         </form>

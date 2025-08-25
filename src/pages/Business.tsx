@@ -28,10 +28,10 @@ function Businesss() {
   }
 
   return (
-    <div className="px-24 py-14 w-full">
+    <div className="px-24 py-14 max-sm:px-5 w-full">
       <div>
         <h1
-          className={`border-b-4 text-[27px] font-bold ${
+          className={`border-b-4 text-[27px] font-bold max-sm:text-[21px] ${
             i18n.language === "ar" ? "pl-4" : "pr-4"
           }  w-fit border-b-yellow-500 dark:text-white dark:border-b-yellow-600`}
         >
@@ -59,7 +59,7 @@ function Businesss() {
       <div>
         <button
           onClick={() => setBusinessModal(true)}
-          className="w-full text-center bg-yellow-500 dark:bg-yellow-600 text-white rounded py-2 text-lg mt-6 cursor-pointer "
+          className="w-full max-sm:text-[16px] text-center bg-yellow-500 dark:bg-yellow-600 text-white rounded py-2 text-lg mt-6 cursor-pointer "
         >
           {t("createBusinessUnit")}
         </button>

@@ -8,7 +8,7 @@ function SideBar() {
   const { t } = useTranslation();
 
   return (
-    <div className="group w-[5%] hover:w-[20%] h-[100dvh] flex flex-col items-center py-14 gap-5 bg-white dark:bg-[#1a273b] shadow-md transition-all duration-300 overflow-hidden">
+    <div className="group max-sm:hidden w-[5%] hover:w-[20%] h-[100dvh] flex flex-col items-center py-14 gap-5 bg-white dark:bg-[#1a273b] shadow-md transition-all duration-300 overflow-hidden">
       {/* Logo / Title */}
       <Link
         to="/users"

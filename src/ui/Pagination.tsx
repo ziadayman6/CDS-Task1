@@ -21,14 +21,28 @@ function Pagination({
 }: Pagination) {
   const { t, i18n } = useTranslation();
 
+  const maxVisible = 6; // عدد الخانات اللي تحب تظهر
+
+  let startPage = currentPage;
+  let endPage = currentPage + maxVisible - 1;
+
+  if (endPage > totalPages) {
+    endPage = totalPages;
+    startPage = Math.max(1, totalPages - maxVisible + 1);
+  }
+
+  const pages = Array.from(
+    { length: endPage - startPage + 1 },
+    (_, index) => startPage + index
+  );
   return (
-    <div className="flex justify-between items-center mt-5">
-      <div className="text-black dark:text-white">
+    <div className="flex max-sm:flex-col max-sm:items-start max-sm:gap-2 justify-between items-center mt-5">
+      <div className="text-black dark:text-white max-sm:text-sm">
         {t("showResults")} <span>{start + 1}</span> -
         <span> {start + totalItems}</span>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 max-sm:text-sm">
         <label className="text-black dark:text-white">
           {t("resultsPerPage")}
         </label>
@@ -46,7 +60,7 @@ function Pagination({
         </select>
       </div>
 
-      <div className="flex gap-3 items-center justify-end flex-wrap w-[60%]">
+      <div className="flex gap-3 items-center justify-end max-sm:justify-start flex-wrap w-[60%]">
         <div
           className={`cursor-pointer ${currentPage === 1 ? "hidden" : ""} `}
           onClick={() => setPage(currentPage - 1)}
@@ -57,19 +71,17 @@ function Pagination({
             } text-yellow-500 dark:text-yellow-600 text-2xl`}
           ></i>
         </div>
-        {Array.from({ length: totalPages }, (_, index) => (
+        {pages.map((page) => (
           <button
-            key={index}
-            onClick={() => {
-              setPage(index + 1);
-            }}
-            className={`cursor-pointer px-3 py-1.5 text-sm font-bold rounded-4xl ${
-              currentPage === index + 1
+            key={page}
+            onClick={() => setPage(page)}
+            className={`cursor-pointer px-3 py-1.5 max-sm:px-2 max-sm:py-0.5 text-sm font-bold rounded-4xl ${
+              currentPage === page
                 ? "bg-yellow-500 dark:bg-yellow-600 text-white border-yellow-500 dark:border-yellow-600 border-[1px]"
                 : "text-yellow-500 dark:text-yellow-600 border-none"
             }`}
           >
-            {index + 1}
+            {page}
           </button>
         ))}
         <div

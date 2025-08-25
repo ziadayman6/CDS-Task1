@@ -91,18 +91,18 @@ function BusinessModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 ">
-      <div className="bg-white w-[60%] dark:bg-[#1a273b] rounded-2xl border-b-4 border-b-yellow-500 dark:border-b-yellow-600 px-10 py-10 relative">
+      <div className="bg-white w-[60%] max-sm:w-[95%] dark:bg-[#1a273b] rounded-2xl border-b-4 border-b-yellow-500 dark:border-b-yellow-600 px-10 py-10 max-sm:p-8 relative">
         <button
           onClick={onClose}
           className={`absolute top-4 ${
             i18n.language === "ar" ? "left-6" : "right-6"
-          } text-black hover:text-red-600 dark:text-white dark:hover:text-red-800 text-2xl font-bold`}
+          } text-black hover:text-red-600 dark:text-white dark:hover:text-red-800 text-2xl max-sm:text-xl font-bold`}
         >
           X
         </button>
 
         <h1
-          className={`border-b-4 text-[27px] dark:text-white font-bold ${
+          className={`border-b-4 text-[27px] dark:text-white max-sm:text-[20px] font-bold ${
             i18n.language === "en" ? "pr-4" : "pl-4"
           }  w-fit border-b-yellow-500 dark:border-b-yellow-600`}
         >
@@ -110,9 +110,9 @@ function BusinessModal({
         </h1>
 
         <form onSubmit={onSubmit} className="mt-10 flex flex-col gap-5">
-          <div className="flex gap-5 w-[60%] justify-between dark:text-white">
+          <div className="flex max-sm:flex-col max-sm:gap-2 gap-5 w-[60%] max-sm:w-full justify-between dark:text-white">
             <label>{t("name")}</label>
-            <div className="w-[70%]">
+            <div className="w-[70%] max-sm:w-full">
               <input
                 {...register("name")}
                 type="text"
@@ -124,9 +124,9 @@ function BusinessModal({
             </div>
           </div>
 
-          <div className="flex gap-5 w-[60%] justify-between">
+          <div className="flex max-sm:flex-col max-sm:gap-2 gap-5 w-[60%] max-sm:w-full justify-between">
             <label className="dark:text-white">{t("code")}</label>
-            <div className="w-[70%]">
+            <div className="w-[70%] max-sm:w-full">
               <input
                 {...register("code")}
                 type="text"
@@ -138,11 +138,11 @@ function BusinessModal({
             </div>
           </div>
 
-          <div className="flex w-[60%] justify-end">
+          <div className="flex w-[60%] max-sm:w-full justify-end">
             <input
               type="submit"
               value={t("save")}
-              className="px-4 py-1 w-[50%] bg-yellow-500 dark:bg-yellow-600 rounded text-white cursor-pointer"
+              className="px-4 py-1 w-[50%] max-sm:w-full max-sm:mt-5 bg-yellow-500 dark:bg-yellow-600 rounded text-white cursor-pointer"
             />
           </div>
         </form>

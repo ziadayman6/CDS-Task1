@@ -55,7 +55,7 @@ function Table({ columns, fields, data, type }: TableProps) {
   return (
     <div className="rounded-lg overflow-hidden mt-10 w-full">
       <div className="w-full text-sm">
-        <div>
+        <div className="max-sm:hidden">
           <div className="font-bold uppercase text-[14px] dark:text-white text-black flex w-full">
             {columns.map((column, index) => (
               <div
@@ -81,33 +81,55 @@ function Table({ columns, fields, data, type }: TableProps) {
         <div>
           {data?.length > 0 ? (
             data?.map((row, rowIndex) => {
-              console.log(row);
               return (
-                <div
-                  className="bg-white dark:bg-[#1a273b] dark:text-white rounded shadow mb-2 flex text-[15px] items-center py-1 border-l-2 border-yellow-500 dark:border-yellow-600"
-                  key={rowIndex}
-                >
-                  {fields.map((field, colIndex) => {
-                    let value = (row as Record<string, string | number | null>)[
-                      field
-                    ];
-
-                    if (field === "businessUnitId" && value) {
-                      value = selectBusinessNameById(
-                        businessList,
-                        String(value)
-                      );
-                    }
-
-                    if (field === "activeDirectoryId" && value) {
-                      value = selectActiveNameById(activeList, Number(value));
-                    }
-
-                    return (
+                <div className="bg-white dark:bg-[#1a273b] dark:text-white rounded shadow mb-2 border-l-2 border-yellow-500 dark:border-yellow-600 max-sm:flex">
+                  <div className="w-[40%] dark:bg-black/25 bg-gray-100 sm:hidden max-sm:py-1">
+                    {columns.map((column, index) => (
                       <div
-                        key={colIndex}
+                        key={index}
                         className={`
-                          px-4 py-3 ${
+                  px-2 py-3 text-left gap-2 flex font-semibold overflow-hidden truncate w-full 
+                  ${index === 0 && type === "user" ? "basis-[15%]" : ""}
+                  ${index === 0 && type !== "user" ? "basis-[40%]" : ""}
+                  ${index === 1 && type === "user" ? "basis-[20%]" : ""}
+                  ${index === 1 && type !== "user" ? "basis-[40%]" : ""}
+                  ${index === 2 && type === "user" ? "basis-[15%]" : ""}
+                  ${index === 2 && type !== "user" ? "basis-[20%]" : ""}
+                  ${index === 3 ? "basis-[20%]" : ""}
+                  ${index === 4 ? "basis-[15%]" : ""}
+                  ${index === 5 ? "basis-[15%]" : ""}
+                `}
+                      >
+                        {column}
+                        <span className="sm:hidden">:</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div
+                    className="flex max-sm:flex-col max-sm:justify-center max-sm:w-[65%] text-[15px] items-center py-1 max-sm:px-3"
+                    key={rowIndex}
+                  >
+                    {fields.map((field, colIndex) => {
+                      let value = (
+                        row as Record<string, string | number | null>
+                      )[field];
+
+                      if (field === "businessUnitId" && value) {
+                        value = selectBusinessNameById(
+                          businessList,
+                          String(value)
+                        );
+                      }
+
+                      if (field === "activeDirectoryId" && value) {
+                        value = selectActiveNameById(activeList, Number(value));
+                      }
+
+                      return (
+                        <div
+                          key={colIndex}
+                          className={`
+                          px-4 py-3 max-sm:truncate max-sm:w-full ${
                             i18n.language === "ar" ? "text-right" : "text-left"
                           } 
                           ${
@@ -134,58 +156,61 @@ function Table({ columns, fields, data, type }: TableProps) {
                           ${colIndex === 3 ? "basis-[20%]" : ""}
                           ${colIndex === 4 ? "basis-[15%]" : ""}
                         `}
-                      >
-                        {String(value ?? "-")}
-                      </div>
-                    );
-                  })}
+                        >
+                          {String(value ?? "-")}
+                        </div>
+                      );
+                    })}
 
-                  <div className="flex gap-3 items-center justify-start px-4 py-3 basis-[15%]">
-                    <Button
-                      className="px-2 py-1 w-[48%] bg-yellow-500 dark:bg-yellow-600 text-white rounded"
-                      onSubmit={() => {
-                        if (type === "user") {
-                          setEditingRow(row);
-                          setUserModalOpen(true);
-                        }
-                        if (type === "active") {
-                          setEditingRow(row);
-                          setActiveModalOpen(true);
-                        }
-                        if (type === "business") {
-                          setEditingRow(row);
-                          setBusinessModalOpen(true);
-                        }
-                      }}
-                    >
-                      {t("edit")}
-                    </Button>
-                    <button
-                      className="px-2 py-1 w-[48%] bg-red-500 dark:bg-red-800 text-white rounded"
-                      onClick={() => {
-                        if (type === "user") {
-                          openModal(t("removeUser"), t("areYouSureUser"), () =>
-                            dispatch(deleteUser(String(row.id)))
-                          );
-                        }
-                        if (type === "active") {
-                          openModal(
-                            t("removeActive"),
-                            t("areYouSureActive"),
-                            () => dispatch(deleteActive(Number(row.id)))
-                          );
-                        }
-                        if (type === "business") {
-                          openModal(
-                            t("removeBusiness"),
-                            t("areYouSureBusiness"),
-                            () => dispatch(deleteBusiness(String(row.id)))
-                          );
-                        }
-                      }}
-                    >
-                      {t("delete")}
-                    </button>
+                    <div className="flex gap-3 items-center justify-start px-4 py-3 basis-[15%] max-sm:w-full">
+                      <Button
+                        className="px-2 py-1 w-[48%] max-sm:w-fit max-sm:px-3 bg-yellow-500 dark:bg-yellow-600 text-white rounded"
+                        onSubmit={() => {
+                          if (type === "user") {
+                            setEditingRow(row);
+                            setUserModalOpen(true);
+                          }
+                          if (type === "active") {
+                            setEditingRow(row);
+                            setActiveModalOpen(true);
+                          }
+                          if (type === "business") {
+                            setEditingRow(row);
+                            setBusinessModalOpen(true);
+                          }
+                        }}
+                      >
+                        {t("edit")}
+                      </Button>
+                      <button
+                        className="px-2 py-1 w-[48%] max-sm:w-fit max-sm:px-3 bg-red-500 dark:bg-red-800 text-white rounded"
+                        onClick={() => {
+                          if (type === "user") {
+                            openModal(
+                              t("removeUser"),
+                              t("areYouSureUser"),
+                              () => dispatch(deleteUser(String(row.id)))
+                            );
+                          }
+                          if (type === "active") {
+                            openModal(
+                              t("removeActive"),
+                              t("areYouSureActive"),
+                              () => dispatch(deleteActive(Number(row.id)))
+                            );
+                          }
+                          if (type === "business") {
+                            openModal(
+                              t("removeBusiness"),
+                              t("areYouSureBusiness"),
+                              () => dispatch(deleteBusiness(String(row.id)))
+                            );
+                          }
+                        }}
+                      >
+                        {t("delete")}
+                      </button>
+                    </div>
                   </div>
                 </div>
               );

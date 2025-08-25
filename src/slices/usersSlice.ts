@@ -195,7 +195,7 @@ const users: User[] = [
   },
   {
     id: "c838934c-a1d5-4279-8fe6-9a9dbb3a9dd0",
-    email: "hosam.mohamed@cds-sw.com",
+    email: "hosam.mohamed@cds-sw.comaasasas",
     password: "",
     provider: "MANUAL",
     roleCode: "admin",
