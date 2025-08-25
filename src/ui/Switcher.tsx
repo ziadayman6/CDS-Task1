@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function Switcher() {
   const [theme, setTheme] = useState(
     localStorage.getItem("CDStheme") || "light"
   );
+
+  const { t } = useTranslation();
 
   function applyTheme(value: string) {
     document.documentElement.className = "";
@@ -19,13 +22,13 @@ function Switcher() {
         onClick={() => applyTheme("light")}
         className="bi bi-sun-fill bg-yellow-500 rounded px-2 py-1 text-white dark:bg-transparent dark:text-gray-700 cursor-pointer flex items-center gap-1"
       >
-        <span className="hidden group-hover:block text-lg">Light</span>
+        <span className="hidden group-hover:block text-lg">{t("light")}</span>
       </i>
       <i
         onClick={() => applyTheme("dark")}
         className="bi bi-moon-fill text-gray-400 rounded px-2 py-1 bg-transparent dark:bg-yellow-600 dark:text-white cursor-pointer flex items-center gap-1"
       >
-        <span className="hidden group-hover:block text-lg">Dark</span>
+        <span className="hidden group-hover:block text-lg">{t("dark")}</span>
       </i>
     </div>
   );

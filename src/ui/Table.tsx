@@ -17,6 +17,7 @@ import Button from "./Button";
 import UserModal from "./UserModal";
 import ActiveModal from "./ActiveModal";
 import BusinessModal from "./BusinessModal";
+import { useTranslation } from "react-i18next";
 
 type TableProps = {
   columns: string[];
@@ -26,6 +27,8 @@ type TableProps = {
 };
 
 function Table({ columns, fields, data, type }: TableProps) {
+  const { i18n, t } = useTranslation();
+
   const [modalOpen, setModalOpen] = useState(false);
   const [userModalOpen, setUserModalOpen] = useState(false);
   const [activeModalOpen, setActiveModalOpen] = useState(false);
@@ -104,7 +107,9 @@ function Table({ columns, fields, data, type }: TableProps) {
                       <div
                         key={colIndex}
                         className={`
-                          px-4 py-3 text-left
+                          px-4 py-3 ${
+                            i18n.language === "ar" ? "text-right" : "text-left"
+                          } 
                           ${
                             colIndex === 0 && type === "user"
                               ? "basis-[15%]"
@@ -153,35 +158,33 @@ function Table({ columns, fields, data, type }: TableProps) {
                         }
                       }}
                     >
-                      Edit
+                      {t("edit")}
                     </Button>
                     <button
                       className="px-2 py-1 w-[48%] bg-red-500 dark:bg-red-800 text-white rounded"
                       onClick={() => {
                         if (type === "user") {
-                          openModal(
-                            "Remove user",
-                            `Are you sure you want to remove the user ?`,
-                            () => dispatch(deleteUser(String(row.id)))
+                          openModal(t("removeUser"), t("areYouSureUser"), () =>
+                            dispatch(deleteUser(String(row.id)))
                           );
                         }
                         if (type === "active") {
                           openModal(
-                            "Remove active directory",
-                            `Are you sure you want to remove active directory ?`,
+                            t("removeActive"),
+                            t("areYouSureActive"),
                             () => dispatch(deleteActive(Number(row.id)))
                           );
                         }
                         if (type === "business") {
                           openModal(
-                            "Remove business unit",
-                            `Are you sure you want to remove the business unit ?`,
+                            t("removeBusiness"),
+                            t("areYouSureBusiness"),
                             () => dispatch(deleteBusiness(String(row.id)))
                           );
                         }
                       }}
                     >
-                      Delete
+                      {t("delete")}
                     </button>
                   </div>
                 </div>

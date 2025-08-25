@@ -6,8 +6,11 @@ import { login, type request } from "../services/login";
 import { Navigate, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
+import { useTranslation } from "react-i18next";
 
 function Login() {
+  const { t } = useTranslation();
+
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
 
@@ -42,7 +45,9 @@ function Login() {
 
   return (
     <div className="w-full h-[100dvh] flex flex-col justify-center items-center dark:bg-[#0f181f]">
-      <h1 className="text-3xl mb-5 max-sm:text-2xl dark:text-white">Login to your account</h1>
+      <h1 className="text-3xl mb-5 max-sm:text-2xl dark:text-white">
+        {t("loginToAcc")}
+      </h1>
       <div className="w-[50%] max-sm:w-[90%] bg-[#eeeeee6b] px-40 max-sm:px-10 py-24 flex flex-col gap-8 rounded-2xl dark:bg-[#1a273b]">
         {isLoading ? (
           <div className="flex justify-center ">
@@ -55,12 +60,12 @@ function Login() {
         ) : (
           <>
             <TextInput value={user} setValue={setUser}>
-              Username
+              {t("username")}
             </TextInput>
             <PassInput value={pass} setValue={setPass}>
-              Password
+              {t("pass")}
             </PassInput>
-            <Button onSubmit={runLogin}>Login</Button>
+            <Button onSubmit={runLogin}>{t("login")}</Button>
           </>
         )}
       </div>

@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 type Pagination = {
   totalPages: number;
   start: number;
@@ -17,16 +19,18 @@ function Pagination({
   pageSize,
   setPageSize,
 }: Pagination) {
+  const { t, i18n } = useTranslation();
+
   return (
     <div className="flex justify-between items-center mt-5">
       <div className="text-black dark:text-white">
-        Show results from <span>{start + 1}</span> -
+        {t("showResults")} <span>{start + 1}</span> -
         <span> {start + totalItems}</span>
       </div>
 
       <div className="flex items-center gap-2">
         <label className="text-black dark:text-white">
-          Results per page:
+          {t("resultsPerPage")}
         </label>
         <select
           id="pageSize"
@@ -47,7 +51,11 @@ function Pagination({
           className={`cursor-pointer ${currentPage === 1 ? "hidden" : ""} `}
           onClick={() => setPage(currentPage - 1)}
         >
-          <i className="bi bi-arrow-left text-yellow-500 dark:text-yellow-600 text-2xl"></i>
+          <i
+            className={`bi ${
+              i18n.language === "en" ? "bi-arrow-left" : "bi-arrow-right"
+            } text-yellow-500 dark:text-yellow-600 text-2xl`}
+          ></i>
         </div>
         {Array.from({ length: totalPages }, (_, index) => (
           <button
@@ -70,7 +78,11 @@ function Pagination({
           } `}
           onClick={() => setPage(currentPage + 1)}
         >
-          <i className="bi bi-arrow-right text-yellow-500 dark:text-yellow-600 text-2xl"></i>
+          <i
+            className={`bi ${
+              i18n.language === "ar" ? "bi-arrow-left" : "bi-arrow-right"
+            } text-yellow-500 dark:text-yellow-600 text-2xl`}
+          ></i>
         </div>
       </div>
     </div>

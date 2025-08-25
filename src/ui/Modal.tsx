@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ModalProps {
   isOpen: boolean;
@@ -9,6 +10,8 @@ interface ModalProps {
 }
 
 function Modal({ isOpen, title, children, onClose, onConfirm }: ModalProps) {
+  const { t } = useTranslation();
+
   if (!isOpen) return null;
 
   return (
@@ -23,13 +26,13 @@ function Modal({ isOpen, title, children, onClose, onConfirm }: ModalProps) {
             onClick={onClose}
             className="px-4 py-2 rounded border-[1px] cursor-pointer border-yellow-500 dark:border-yellow-600 text-yellow-500 dark:text-yellow-600 hover:text-white hover:bg-yellow-500 dark:hover:bg-yellow-600"
           >
-            Cancel
+            {t("cancel")}
           </button>
           <button
             onClick={onConfirm}
             className="px-4 py-2 rounded bg-red-500 text-white dark:bg-red-800 cursor-pointer"
           >
-            Confirm
+            {t("confirm")}
           </button>
         </div>
       </div>

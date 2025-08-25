@@ -4,10 +4,13 @@ import Table from "../ui/Table";
 import Pagination from "../ui/Pagination";
 import ActiveModal from "../ui/ActiveModal";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function Activee() {
   const [activeModal, setActiveModal] = useState(false);
   const [pageSize, setPageSize] = useState(5);
+
+  const { t, i18n } = useTranslation();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = !searchParams.get("page")
@@ -27,12 +30,16 @@ function Activee() {
   return (
     <div className="px-24 py-14 w-full">
       <div>
-        <h1 className="border-b-4 text-[27px] font-bold pr-4 w-fit border-b-yellow-500 dark:text-white dark:border-b-yellow-600">
-          Active Directories
+        <h1
+          className={`border-b-4 text-[27px] font-bold ${
+            i18n.language === "ar" ? "pl-4" : "pr-4"
+          }  w-fit border-b-yellow-500 dark:text-white dark:border-b-yellow-600`}
+        >
+          {t("activeDirectories")}
         </h1>
 
         <Table
-          columns={["Name", "Description", "Actions"]}
+          columns={[t("name"), t("description"), t("actions")]}
           fields={["name", "description"]}
           data={data}
           type="active"
@@ -54,7 +61,7 @@ function Activee() {
           onClick={() => setActiveModal(true)}
           className="w-full text-center bg-yellow-500 dark:bg-yellow-600 text-white rounded py-2 text-lg mt-6 cursor-pointer "
         >
-          Create Active Directoy
+          {t("createActiveDirectory")}
         </button>
       </div>
 

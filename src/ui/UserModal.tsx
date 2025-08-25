@@ -4,6 +4,7 @@ import { addUser, updateUser, type User } from "../slices/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../store";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ModalProps {
   isOpen: boolean;
@@ -81,6 +82,8 @@ const resolver: Resolver<FormValues> = async (values) => {
 };
 
 function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
+  const { t, i18n } = useTranslation();
+
   const dispatch = useDispatch();
 
   const businesses = useSelector((state: RootState) => state.business);
@@ -130,18 +133,27 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
       <div className="bg-white dark:bg-[#1a273b] w-[60%] rounded-2xl border-b-4 border-b-yellow-500 dark:border-b-yellow-600 px-15 py-10 relative">
         <button
           onClick={onClose}
-          className="absolute top-4 right-6 text-black hover:text-red-600 dark:text-white dark:hover:text-red-800 text-2xl font-bold"
+          className={`absolute top-4 ${
+            i18n.language === "ar" ? "left-6" : "right-6"
+          } text-black hover:text-red-600 dark:text-white dark:hover:text-red-800 text-2xl font-bold`}
         >
           X
         </button>
 
-        <h1 className="border-b-4 text-[27px] dark:text-white font-bold pr-4 w-fit border-b-yellow-500 dark:border-b-yellow-600">
-          {defaultValues ? "Edit User" : "Create User"}
+        <h1
+          className={`border-b-4 text-[27px] dark:text-white font-bold ${
+            i18n.language === "en" ? "pr-4" : "pl-4"
+          } w-fit border-b-yellow-500 dark:border-b-yellow-600`}
+        >
+          {defaultValues ? t("editUser") : t("createUser")}
         </h1>
 
-        <form onSubmit={onSubmit} className="mt-10 flex flex-col gap-5 dark:text-white">
+        <form
+          onSubmit={onSubmit}
+          className="mt-10 flex flex-col gap-5 dark:text-white"
+        >
           <div className="flex gap-5 w-[60%] justify-between ">
-            <label>First name</label>
+            <label>{t("firstName")}</label>
             <div className="w-[70%]">
               <input
                 {...register("first")}
@@ -155,7 +167,7 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
           </div>
 
           <div className="flex gap-5 w-[60%] justify-between">
-            <label>Last name</label>
+            <label>{t("lastName")}</label>
             <div className="w-[70%]">
               <input
                 {...register("last")}
@@ -169,7 +181,7 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
           </div>
 
           <div className="flex gap-5 w-[60%] justify-between">
-            <label>Username</label>
+            <label>{t("username")}</label>
             <div className="w-[70%]">
               <input
                 {...register("username")}
@@ -183,7 +195,7 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
           </div>
 
           <div className="flex gap-5 w-[60%] justify-between">
-            <label>Email</label>
+            <label>{t("email")}</label>
             <div className="w-[70%]">
               <input
                 {...register("email")}
@@ -197,7 +209,7 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
           </div>
 
           <div className="flex gap-5 w-[60%] justify-between">
-            <label>Phone number</label>
+            <label>{t("phone")}</label>
             <div className="w-[70%]">
               <input
                 {...register("phone")}
@@ -211,7 +223,7 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
           </div>
 
           <div className="flex gap-5 w-[60%] justify-between">
-            <label>Business unit</label>
+            <label>{t("businessUnit")}</label>
             <div className="w-[70%]">
               <select
                 {...register("business")}
@@ -231,7 +243,7 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
           </div>
 
           <div className="flex gap-5 w-[60%] justify-between">
-            <label>Active directory</label>
+            <label>{t("activeDirectory")}</label>
             <div className="w-[70%]">
               <select
                 {...register("active")}
@@ -253,6 +265,7 @@ function UserModal({ isOpen, onClose, defaultValues, userId }: ModalProps) {
           <div className="flex w-[60%] justify-end">
             <input
               type="submit"
+              value={t("save")}
               className="px-4 py-1 w-[50%] dark:bg-yellow-600 bg-yellow-500 rounded text-white cursor-pointer"
             />
           </div>

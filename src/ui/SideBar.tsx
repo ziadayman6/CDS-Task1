@@ -1,8 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import Switcher from "./Switcher";
+import LangSwitcher from "./LangSwitcher";
+import { useTranslation } from "react-i18next";
 // import LangSwitcher from "./LangSwitcher";
 
 function SideBar() {
+  const { t } = useTranslation();
+
   return (
     <div className="group w-[5%] hover:w-[20%] h-[100dvh] flex flex-col items-center py-14 gap-5 bg-white dark:bg-[#1a273b] shadow-md transition-all duration-300 overflow-hidden">
       {/* Logo / Title */}
@@ -27,7 +31,7 @@ function SideBar() {
       >
         <i className="bi bi-people-fill text-xl"></i>
         <span className="hidden group-hover:block transition-opacity duration-300 whitespace-nowrap">
-          Users
+          {t("users")}
         </span>
       </NavLink>
 
@@ -42,7 +46,7 @@ function SideBar() {
       >
         <i className="bi bi-briefcase-fill text-xl"></i>
         <span className="hidden group-hover:block transition-opacity duration-300 whitespace-nowrap">
-          Business Units
+          {t("businessUnits")}
         </span>
       </NavLink>
 
@@ -57,13 +61,13 @@ function SideBar() {
       >
         <i className="bi bi-folder-fill text-xl"></i>
         <span className="hidden group-hover:block transition-opacity duration-300 whitespace-nowrap">
-          Active Directory
+          {t("activeDirectories")}
         </span>
       </NavLink>
 
       {/* Logout */}
       <div className="w-full flex flex-col items-center mt-auto gap-5">
-        {/* <LangSwitcher /> */}
+        <LangSwitcher />
         <Switcher />
         <Link
           to="/"
@@ -74,7 +78,7 @@ function SideBar() {
         >
           <i className="bi bi-box-arrow-right text-xl"></i>
           <span className="hidden group-hover:block transition-opacity duration-300 whitespace-nowrap">
-            Logout
+            {t("logout")}
           </span>
         </Link>
       </div>

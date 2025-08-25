@@ -4,6 +4,7 @@ import Table from "../ui/Table";
 import Pagination from "../ui/Pagination";
 import UserModal from "../ui/UserModal";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function Users() {
   const [userModal, setUserModal] = useState(false);
@@ -12,6 +13,8 @@ function Users() {
   const currentPage = !searchParams.get("page")
     ? 1
     : Number(searchParams.get("page"));
+
+  const { t, i18n } = useTranslation();
 
   const { start, data, totalItems, totalPages } = useUsers(
     currentPage,
@@ -26,18 +29,22 @@ function Users() {
   return (
     <div className="px-24 py-14 w-full">
       <div>
-        <h1 className="border-b-4 text-[27px] font-bold pr-4 w-fit border-b-yellow-500 dark:text-white dark:border-b-yellow-600">
-          Users
+        <h1
+          className={`border-b-4 text-[27px] font-bold ${
+            i18n.language === "ar" ? "pl-4" : "pr-4"
+          }  w-fit border-b-yellow-500 dark:text-white dark:border-b-yellow-600`}
+        >
+          {t("users")}
         </h1>
 
         <Table
           columns={[
-            "Username",
-            "Email",
-            "Phone",
-            "Active directory",
-            "Business unit",
-            "Actions",
+            t("username"),
+            t("email"),
+            t("phone"),
+            t("activeDirectory"),
+            t("businessUnit"),
+            t("actions"),
           ]}
           fields={[
             "username",
@@ -66,7 +73,7 @@ function Users() {
           onClick={() => setUserModal(true)}
           className="w-full text-center bg-yellow-500 dark:bg-yellow-600 text-white rounded py-2 text-lg mt-6 cursor-pointer "
         >
-          Create New User
+          {t("createNewUser")}
         </button>
       </div>
 

@@ -30,14 +30,14 @@ function App() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const lang = localStorage.getItem("CDSlang");
-  //   if (lang) {
-  //     i18n.changeLanguage(lang);
-  //   }
+  useEffect(() => {
+    const lang = localStorage.getItem("CDSlang");
+    if (lang) {
+      i18n.changeLanguage(lang);
+    }
 
-  //   document.documentElement.dir = lang == "ar" ? "rtl" : "ltr";
-  // }, [i18n]);
+    document.documentElement.dir = lang == "ar" ? "rtl" : "ltr";
+  }, [i18n]);
 
   const router = createBrowserRouter([
     {
