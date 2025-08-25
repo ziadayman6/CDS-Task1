@@ -3,7 +3,6 @@ import type { RootState } from "../store";
 
 export function useUsers(page: number, limit: number) {
   const users = useSelector((state: RootState) => state.users);
-  console.log(limit);
   const size = limit === 0 ? 10 : limit;
 
   const startIndex = (page - 1) * size;

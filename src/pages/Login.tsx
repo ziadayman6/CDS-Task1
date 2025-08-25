@@ -28,8 +28,7 @@ function Login() {
     };
 
     try {
-      const res = await login(requestData);
-      console.log("Login successful:", res.token);
+      await login(requestData);
       toast.success("Logged in successfully");
       setIsLoading(false);
       navigate("/users");

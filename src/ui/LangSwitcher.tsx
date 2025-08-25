@@ -1,20 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 function LangSwitcher() {
-  const { i18n, t } = useTranslation();
-
-  const [theme, setTheme] = useState(
-    localStorage.getItem("CDStheme") || "light"
-  );
-
-  function applyTheme(value: string) {
-    document.documentElement.className = "";
-    document.documentElement.classList.add(value);
-    setTheme(value);
-    localStorage.setItem("CDStheme", value);
-  }
+  const { i18n } = useTranslation();
 
   return (
     <div className="bg-gray-200 dark:bg-[#0f181f] w-[65%] group-hover:w-[85%] rounded flex flex-col group-hover:flex-row justify-center items-center py-2 text-xl gap-3">

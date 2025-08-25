@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 function Switcher() {
-  const [theme, setTheme] = useState(
+  const [,setTheme] = useState(
     localStorage.getItem("CDStheme") || "light"
   );
 

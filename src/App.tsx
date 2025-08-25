@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login";
-// import Home from "./pages/Home";
 import { Toaster } from "react-hot-toast";
 import AppLayout from "./pages/AppLayout";
 import Users from "./pages/Users";
@@ -14,7 +12,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 function App() {
-  const [mode, setMode] = useState("");
+  const [, setMode] = useState("");
   const { i18n } = useTranslation();
 
   useEffect(() => {

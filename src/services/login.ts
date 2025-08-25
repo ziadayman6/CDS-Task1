@@ -31,7 +31,6 @@ function updateToken(token: jwtToken): Promise<jwtToken> {
     }
 
     setTimeout(() => {
-      console.log("updated");
       resolve({
         ...token,
         expiresIn: token.expiresIn + 3600,
