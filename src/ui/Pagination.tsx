@@ -21,7 +21,7 @@ function Pagination({
 }: Pagination) {
   const { t, i18n } = useTranslation();
 
-  const maxVisible = 6; // عدد الخانات اللي تحب تظهر
+  const maxVisible = 6;
 
   let startPage = currentPage;
   let endPage = currentPage + maxVisible - 1;
@@ -35,6 +35,15 @@ function Pagination({
     { length: endPage - startPage + 1 },
     (_, index) => startPage + index
   );
+
+  if (totalItems === 0 && totalPages !== 0) {
+    setPage(currentPage - 1);
+  }
+
+  if (totalPages === 0) {
+    return;
+  }
+
   return (
     <div className="flex max-sm:flex-col max-sm:items-start max-sm:gap-2 justify-between items-center mt-5">
       <div className="text-black dark:text-white max-sm:text-sm">

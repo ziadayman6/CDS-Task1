@@ -41,5 +41,6 @@
   "save": "Save",
   "login": "Login",
   "pass": "Password",
-  "loginToAcc": "Login to your account"
+  "loginToAcc": "Login to your account",
+  "noData": "NO DATA"
 }

@@ -56,7 +56,11 @@ function Table({ columns, fields, data, type }: TableProps) {
     <div className="rounded-lg overflow-hidden mt-10 w-full">
       <div className="w-full text-sm">
         <div className="max-sm:hidden">
-          <div className="font-bold uppercase text-[14px] dark:text-white text-black flex w-full">
+          <div
+            className={`${
+              data?.length === 0 && "hidden"
+            } font-bold uppercase text-[14px] dark:text-white text-black flex w-full`}
+          >
             {columns.map((column, index) => (
               <div
                 key={index}
@@ -216,14 +220,11 @@ function Table({ columns, fields, data, type }: TableProps) {
               );
             })
           ) : (
-            <tr className="bg-gray-100">
-              <td
-                colSpan={columns.length}
-                className="px-4 py-3 text-center text-gray-500 uppercase"
-              >
-                No data
-              </td>
-            </tr>
+            <div className="">
+              <div className="px-4 py-3 text-center text-lg max-sm:text-sm text-gray-400 dark:text-gray-500 uppercase">
+                {t("noData")}
+              </div>
+            </div>
           )}
         </div>
       </div>
