@@ -2,7 +2,6 @@ import { Link, NavLink } from "react-router-dom";
 import Switcher from "./Switcher";
 import LangSwitcher from "./LangSwitcher";
 import { useTranslation } from "react-i18next";
-// import LangSwitcher from "./LangSwitcher";
 
 function SideBar() {
   const { t } = useTranslation();

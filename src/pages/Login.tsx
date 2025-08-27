@@ -44,9 +44,13 @@ function Login() {
 
   return (
     <div className="w-full h-[100dvh] flex flex-col justify-center items-center dark:bg-[#0f181f]">
-      <h1 className="text-3xl mb-5 max-sm:text-2xl dark:text-white">
-        {t("loginToAcc")}
-      </h1>
+      <div className="flex flex-col items-center gap-5">
+        <img src="crud.png" alt="none" className="rounded-full w-25 h-25 max-sm:w-15 max-sm:h-15" />
+        <h1 className="text-3xl mb-5 max-sm:text-2xl dark:text-white">
+          {t("loginToAcc")}
+        </h1>
+      </div>
+
       <div className="w-[50%] max-sm:w-[90%] bg-[#eeeeee6b] px-40 max-sm:px-10 py-24 flex flex-col gap-8 rounded-2xl dark:bg-[#1a273b]">
         {isLoading ? (
           <div className="flex justify-center ">
